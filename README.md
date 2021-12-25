@@ -82,7 +82,7 @@ python3 query.py
 
 
 ## API
-🚀RocketQA provide two types of models, ERNIE-based dual encoder for answer retrieval and ERNIE-based cross encoder for answer re-ranking. You can easily integrate these models into you tasks. For running our models and your own checkpoints, you can use the following functions.
+🚀RocketQA provide two types of models, ERNIE-based dual encoder for answer retrieval and ERNIE-based cross encoder for answer re-ranking. You can easily integrate these models into your tasks. For running our models and your own checkpoints, you can use the following functions.
 
 ### Load model
 
@@ -119,7 +119,7 @@ Given a list of queries and paragraphs (and titles), returns their matching scor
 
 ### Examples
 
-Following the examples below, you can retrieve the vector representations of your documents and connect 🚀RocketQA to your own tasks.  
+Following the examples below, you can retrieve the vector representations of your documents and connect  🚀RocketQA to your own tasks.  
 
 ####  Run RocketQA Model
 To run RocketQA models, you should set the parameter `model` in 'load_model()' with RocketQA model name returned by 'available_models()'.
