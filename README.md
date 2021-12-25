@@ -1,11 +1,12 @@
-# RocketQA
+<img src="https://github.com/PaddlePaddle/RocketQA/blob/main/Rocketqa_title_2.png" alt="" align=center />
 
-In recent years, the dense retrievers based on pre-trained language models have achieved remarkable progress. To facilitate more developers using cutting edge technologies, this repository provides an easy-to-use toolkit for running and fine-tuning the state-of-the-art dense retrievers, namely **RocketQA**. This toolkit has the following advantages:
+In recent years, the dense retrievers based on pre-trained language models have achieved remarkable progress. To facilitate more developers using cutting edge technologies, this repository provides an easy-to-use toolkit for running and fine-tuning the state-of-the-art dense retrievers, namely **🚀RocketQA**. This toolkit has the following advantages:
 
 
-* ***State-of-the-art***: It provides well-trained RocketQA models, which achieve SOTA performance on many dense retrieval datasets. And it will continue to update the [latest models](https://github.com/PaddlePaddle/RocketQA#news).
-* ***First-Chinese-model***: It provides the first open source Chinese dense retrieval model, which is trained on millions of manual annotation data from [DuReader](https://github.com/baidu/DuReader).
-* ***Easy-to-use***: By integrating this toolkit with [JINA](https://jina.ai/), developers can build an end-to-end question answering system with several lines of code.
+* ***State-of-the-art***: 🚀RocketQA provides our well-trained models, which achieve SOTA performance on many dense retrieval datasets. And it will continue to update the [latest models](https://github.com/PaddlePaddle/RocketQA#news).
+* ***First-Chinese-model***: 🚀RocketQA provides the first open source Chinese dense retrieval model, which is trained on millions of manual annotation data from [DuReader](https://github.com/baidu/DuReader).
+* ***Easy-to-use***: By integrating this toolkit with [JINA](https://jina.ai/), 🚀RocketQA can help developers build an end-to-end question answering system with several lines of code. <img src="https://github.com/PaddlePaddle/RocketQA/blob/main/rocketQA_flow.png" alt="" align=center />
+
 
 ## Installation
 
@@ -39,7 +40,7 @@ docker run -it docker.io/rocketqa/rocketqa bash
 
 ## Getting Started
 
-Refer to the examples below, you can build your own Search Engine with several lines of code.
+Refer to the examples below, you can build your own Search Engine with several lines of code. We also provide a [Playground]() with JupyterNotebook. Try 🚀RocketQA straight away in your browser!
 
 ### Running with JINA
 [JINA](https://jina.ai/) is a cloud-native neural search framework to build SOTA and scalable deep learning search applications in minutes. Here is a simple example to build a Search Engine based on JINA and RocketQA.
@@ -48,10 +49,11 @@ Refer to the examples below, you can build your own Search Engine with several l
 cd examples/jina_example
 pip3 install -r requirements.txt
 
-# Index: Encodes and indexes text, then starts a searching service
+# Generate vector representations and build a libray for your Documents
+# JINA will automaticlly start a web service for you
 python3 app.py index toy_data/test.tsv
 
-# Query: Encodes query and searches for answer, returns candidates ranked by relevance score
+# Try some some questions related to the indexed Documents
 python3 app.py query_cli
 ```
 Please view [JINA example](https://github.com/PaddlePaddle/RocketQA/tree/main/examples/jina_example) to know more.
@@ -62,19 +64,19 @@ We also provide a simple example built on [Faiss](https://github.com/facebookres
 cd examples/faiss_example/
 pip3 install -r requirements.txt
 
-# Index: Encodes and indexes text
+# Generate vector representations and build a libray for your Documents
 python3 index.py en ../marco.tp.1k marco_index
 
-# Start service
+# Start a web service on http://localhost:8888/rocketqa
 python3 rocketqa_service.py en ../marco.tp.1k marco_index
 
-# Request: Encodes query and searches for answer, returns candidates ranked by relevance score
+# Try some some questions related to the indexed Documents
 python3 query.py
 ```
 
 
 ## API
-RocketQA provide two types of models, ERNIE-based dual encoder for answer retrieval and ERNIE-based cross encoder for answer re-ranking. For running RocketQA models and your own checkpoints, you can use the following functions.
+🚀RocketQA provide two types of models, ERNIE-based dual encoder for answer retrieval and ERNIE-based cross encoder for answer re-ranking. You can easily integrate these models into you tasks. For running our models and your own checkpoints, you can use the following functions.
 
 ### Load model
 
@@ -108,14 +110,13 @@ Cross-encoder returned by "load_model()" supports the following function:
 
 Given a list of queries and paragraphs (and titles), returns their matching scores (probability that the paragraph is the query's right answer).
   
-  
 
-## Examples
+### Examples
 
-Following the examples below, you can run RocketQA models and your own checkpoints. 
+Following the examples below, you can retrieve the vector representations of your documents and connect 🚀RocketQA to your own tasks.  
 
-###  Run RocketQA Model
-To run RocketQA models, you should set the parameter `model` in 'load_model()' with RocketQA model name return by 'available_models()'.
+####  Run RocketQA Model
+To run RocketQA models, you should set the parameter `model` in 'load_model()' with RocketQA model name returned by 'available_models()'.
 
 ```python
 import rocketqa
@@ -134,7 +135,7 @@ p_embs = dual_encoder.encode_para(para=para_list)
 dot_products = dual_encoder.matching(query=query_list, para=para_list)
 ```
 
-### Run Self-development Model
+#### Run Self-development Model
 To run your own checkpoints, you should write a config file, and set the parameter `model` in 'load_model()' with the path of the config file.
 
 ```python
