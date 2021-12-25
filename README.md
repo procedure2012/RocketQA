@@ -1,4 +1,10 @@
-<img src="https://github.com/procedure2012/RocketQA/blob/main/Rocketqa_title_2.png" alt="" align=center />
+<p align=center> <img src="https://github.com/procedure2012/RocketQA/blob/main/rocketqa_title(1).png" /> </p>
+
+<div align=center>
+  
+![](https://img.shields.io/badge/license-Apache%202-blue) ![](https://img.shields.io/badge/version-v1.0-green) ![](https://img.shields.io/badge/JupyterNotebook-Try%20%F0%9F%9A%80RocketQA%20Now!-orange) ![](https://img.shields.io/badge/requirements-up%20to%20date-brightgreen) ![](https://img.shields.io/badge/size-1.68MB-blue)
+  
+ </div>
 
 In recent years, the dense retrievers based on pre-trained language models have achieved remarkable progress. To facilitate more developers using cutting edge technologies, this repository provides an easy-to-use toolkit for running and fine-tuning the state-of-the-art dense retrievers, namely **🚀RocketQA**. This toolkit has the following advantages:
 
