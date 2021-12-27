@@ -11,7 +11,7 @@ In recent years, the dense retrievers based on pre-trained language models have 
 
 * ***State-of-the-art***: 🚀RocketQA provides our well-trained models, which achieve SOTA performance on many dense retrieval datasets. And it will continue to update the [latest models](https://github.com/PaddlePaddle/RocketQA#news).
 * ***First-Chinese-model***: 🚀RocketQA provides the first open source Chinese dense retrieval model, which is trained on millions of manual annotation data from [DuReader](https://github.com/baidu/DuReader).
-* ***Easy-to-use***: By integrating this toolkit with [JINA](https://jina.ai/), 🚀RocketQA can help developers build an end-to-end question answering system with several lines of code. <img src="https://github.com/procedure2012/RocketQA/blob/main/rocketQA_flow.png" alt="" align=center />
+* ***Easy-to-use***: By integrating this toolkit with [JINA](https://jina.ai/), 🚀RocketQA can help developers build an end-to-end question answering system with several lines of code. <img src="https://github.com/procedure2012/RocketQA/blob/main/rocketQA_flow_short.png" alt="" align=center />  <img src="https://github.com/procedure2012/RocketQA/blob/main/rocketQA_flow(1).png" alt="" align=center />  <img src="https://github.com/procedure2012/RocketQA/blob/main/rocketQA_flow_shortest.png" alt="" align=center />
 
 
 ## Installation
@@ -59,7 +59,7 @@ pip3 install -r requirements.txt
 # JINA will automaticlly start a web service for you
 python3 app.py index toy_data/test.tsv
 
-# Try some some questions related to the indexed Documents
+# Try some questions related to the indexed Documents
 python3 app.py query_cli
 ```
 Please view [JINA example](https://github.com/PaddlePaddle/RocketQA/tree/main/examples/jina_example) to know more.
@@ -76,13 +76,13 @@ python3 index.py en ../marco.tp.1k marco_index
 # Start a web service on http://localhost:8888/rocketqa
 python3 rocketqa_service.py en ../marco.tp.1k marco_index
 
-# Try some some questions related to the indexed Documents
+# Try some questions related to the indexed Documents
 python3 query.py
 ```
 
 
 ## API
-You can also easily integrate 🚀RocketQA into your own task. We provide two types of models, ERNIE-based dual encoder for answer retrieval and ERNIE-based cross encoder for answer re-ranking. For running our models and your own checkpoints, you can use the following functions.
+You can also easily integrate 🚀RocketQA into your own task. We provide two types of models, ERNIE-based dual encoder for answer retrieval and ERNIE-based cross encoder for answer re-ranking. For running our models, you can use the following functions.
 
 ### Load model
 
@@ -119,7 +119,7 @@ Given a list of queries and paragraphs (and titles), returns their matching scor
 
 ### Examples
 
-Following the examples below, you can retrieve the vector representations of your documents and connect  🚀RocketQA to your own tasks.  
+Following the examples below, you can retrieve the vector representations of your documents and connect 🚀RocketQA to your own tasks.  
 
 ####  Run RocketQA Model
 To run RocketQA models, you should set the parameter `model` in 'load_model()' with RocketQA model name returned by 'available_models()'.
@@ -139,43 +139,6 @@ q_embs = dual_encoder.encode_query(query=query_list)
 p_embs = dual_encoder.encode_para(para=para_list)
 # compute dot product of query representation and para representation
 dot_products = dual_encoder.matching(query=query_list, para=para_list)
-```
-
-#### Run Self-development Model
-To run your own checkpoints, you should write a config file, and set the parameter `model` in 'load_model()' with the path of the config file.
-
-```python
-import rocketqa
-
-query_list = ["交叉验证的作用"]
-title_list = ["交叉验证的介绍"]
-para_list = ["交叉验证(Cross-validation)主要用于建模应用中，例如PCR 、PLS回归建模中。在给定的建模样本中，拿出大部分样本进行建模型，留小部分样本用刚建立的模型进行预报，并求这小部分样本的预报误差，记录它们的平方加和。"]
-
-# conf
-ce_conf = {
-    "model": ${YOUR_CONFIG},     # path of config file
-    "use_cuda": True,
-    "device_id": 0,
-    "batch_size": 16
-}
-
-# init cross encoder
-cross_encoder = rocketqa.load_model(**ce_conf)
-
-# compute matching score of query and para
-ranking_score = cross_encoder.matching(query=query_list, para=para_list, title=title_list)
-```
-
-${YOUR_CONFIG} is a JSON format file.
-```bash
-{
-    "model_type": "cross_encoder",
-    "max_seq_len": 160,
-    "model_conf_path": "en_large_config.json",  # path relative to config file
-    "model_vocab_path": "en_vocab.txt",         # path relative to config file
-    "model_checkpoint_path": "marco_cross_encoder_large", # path relative to config file
-    "joint_training": 0
-}
 ```
 
 ## News
